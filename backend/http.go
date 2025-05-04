@@ -183,15 +183,17 @@ func UserFavMarket() {
         return
     }
     if market.Status == "ok" {
-        fmt.Println("Base:", coin_base)
+        fmt.Println("Market | Price | Wallet")
+        fmt.Println("----------------------")
         for _, coin := range market.Fav {
+
             coin_from := strings.ReplaceAll(coin, coin_base, "")
             coin_to := strings.ReplaceAll(coin, coin_from, "")
             coin_balance := getUserWallet(coin_from)
             if coin_balance != "0.0" {
-                fmt.Printf("[%s/%s]: ", coin_from, coin_to)
-                fmt.Printf("[%s] ", getPriceNobitex(coin))
-                fmt.Printf("[%s]\n", coin_balance)
+                fmt.Printf("%s/%s | ", coin_from, coin_to)
+                fmt.Printf("%s | ", getPriceNobitex(coin))
+                fmt.Printf("%s\n", coin_balance)
                 fmt.Println("----------------------")
             }
 
@@ -205,6 +207,7 @@ func UserFavMarket() {
 
             // os.Exit(2)
             // fmt.Printf("Coin: %s\n", coin)
+
         }
     }
 
