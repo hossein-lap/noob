@@ -1,15 +1,17 @@
 package main
 
 import (
-    // "log"
-    "os"
-    _ "noob/backend"
-    // "noob/ui"
+	// "log"
+	// "os"
+	back "noob/backend"
+	// "noob/ui"
 )
 
 func main() {
     // back.GetPriceNobitex("btcusdt")
-    back.WriteLocal("file.json")
+    back.UserFavMarket()
+    // back.TokenHandler()
+    // back.WriteLocal("file.json")
     // ui.Init()
     // log.Printf("%s: %s\n", "tok", "test")
 }

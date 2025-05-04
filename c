@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NOBITEX_API_TOKEN='bee506a52f28a7261d9a3dafe0a7ad00992a2ed9'
+NOBITEX_API_TOKEN="$(cat .env | awk -F '=' '{print $NF;}' | tr -d '\n')"
 token=${NOBITEX_API_TOKEN}
 alias curl='curl --silent'
 curl='curl --silent'
@@ -36,9 +36,14 @@ userfavmarket() {
 
 }
 
+    echo $token
+
 # # usertransaction
 # userfavmarket | jq | tee user-fav-market.json
-userwallet usdt btc ltc | jq | tee user-wallet.json
+# userwallet usdt btc ltc | jq | tee user-wallet.json
+userwallet btc | jq
+userwallet usdt | jq
+userwallet ltc | jq
 
 # for id in $(jq -r '.favoriteMarkets[]' < user-fav-market.json); do
 #     curl "https://api.nobitex.ir/v3/orderbook/${id}" \
