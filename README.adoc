@@ -4,5 +4,5 @@ Nothing else for now.
 
 == Todo
 
-* Use ctime to update json files automatically
-* Add UI components
+* [ ] Use ctime to update json files automatically
+* [ ] Add UI components
