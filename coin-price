@@ -1,0 +1,40 @@
+#!/bin/sh
+
+curl="curl --silent"
+
+coin_get_price() {
+    date="$(date '+%Y-%m-%d %H:%M:%S')"
+    name=$(echo $1 | tr '[:lower:]' '[:upper:]')
+
+    $curl "https://api.nobitex.ir/v3/orderbook/${name}" \
+        | jq -r '.lastTradePrice'
+}
+
+coin_get_price_glob() {
+    date="$(date '+%Y-%m-%d %H:%M:%S')"
+    name="$1"
+
+    $curl 'https://api.nobitex.ir/market/global-stats' \
+        --request POST \
+        | jq -r ".markets.binance.${name}"
+
+    # printf '[binance price] %s %s: %s\n' "${date}" $name $price
+}
+
+user_market_favorite() {
+    $curl 'https://api.nobitex.ir/users/markets/favorite' \
+        --header "Authorization: Token ${NOBITEX_TOK}" \
+        --request GET \
+
+    # | jq -r '.favoriteMarkets[]'
+}
+
+user_market_favorite
+
+# for i in BTCUSDT USDTIRT TONUSDT; do
+#     coin_get_price ${i}
+# done
+
+# coin_get_price btcusdt
+# coin_get_price_glob btc
+
